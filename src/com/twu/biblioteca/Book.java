@@ -21,6 +21,13 @@ public class Book {
         this.availability = true;
     }
 
+    public Book(String title, String author, int year, boolean availability){
+        this.title = title;
+        this.author = author;
+        this.publishYear = year;
+        this.availability = availability;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -49,7 +56,9 @@ public class Book {
         this.availability = availability;
     }
 
-    public boolean isAvailability() {
+    public boolean getAvailability() {
         return availability;
     }
+
+
 }

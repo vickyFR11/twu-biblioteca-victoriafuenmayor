@@ -16,10 +16,13 @@ public class Option {
         this.text = text;
     }
 
-    public void printListOfOptions(ArrayList<Option> listOfOptions){
-        for (int i = 0; i < listOfOptions.size(); i++){
-            System.out.println(listOfOptions.get(i).number+") "+listOfOptions.get(i).text);
-        }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public String getText() {
+        return text;
     }
 
 }
