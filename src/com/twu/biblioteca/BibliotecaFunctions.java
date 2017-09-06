@@ -1,12 +1,8 @@
 package com.twu.biblioteca;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class BibliotecaFunctions {
-
-
 
     public void addBooksToTheList(ArrayList<Book> listOfBooks){
         listOfBooks.add(new Book("Growing Object-Oriented Software","Steve Freeman", 2010));
