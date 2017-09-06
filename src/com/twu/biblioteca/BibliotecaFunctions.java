@@ -76,7 +76,7 @@ public class BibliotecaFunctions {
 
         for (int i = 0; i < listOfBooks.size(); i++){
             if (listOfBooks.get(i).getAvailability()){
-                System.out.println((i+1)+") Title: "+listOfBooks.get(i).getTitle()+". Author: "+listOfBooks.get(i).getAuthor()+". Year Published: "+listOfBooks.get(i).getPublishYear());
+                System.out.println((i+1)+ listOfBooks.get(i).toString());
             }
 
         }
@@ -87,7 +87,7 @@ public class BibliotecaFunctions {
 
         for (int i = 0; i < listOfBooks.size(); i++){
             if (!listOfBooks.get(i).getAvailability()){
-                System.out.println((i+1)+") Title: "+listOfBooks.get(i).getTitle()+". Author: "+listOfBooks.get(i).getAuthor()+". Year Published: "+listOfBooks.get(i).getPublishYear());
+                System.out.println((i+1)+ listOfBooks.get(i).toString());
             }
 
         }
