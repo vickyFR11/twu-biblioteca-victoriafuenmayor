@@ -50,6 +50,7 @@ public class BibliotecaApp {
                 }else if(option == 3){
                     if (functions.isAnyBookToReturn(listOfBooks)){
                         functions.printNotAvailableBooks(functions.getNotAvailableBooks(listOfBooks));
+
                         System.out.println("Enter the number of the book to return: ");
 
                         text = read.next();

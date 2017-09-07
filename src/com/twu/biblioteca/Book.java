@@ -22,7 +22,7 @@ public class Book {
 
     @Override
     public String toString(){
-        return " " + title + " " + author + " " + publishYear;
+        return " " + title + " " + author + " " + publishYear + "\n";
     }
 
     public void setAvailability(boolean availability) {
