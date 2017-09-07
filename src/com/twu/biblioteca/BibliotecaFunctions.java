@@ -35,17 +35,17 @@ public class BibliotecaFunctions {
         }
     }
 
-    public boolean checkOutBook(int index, ArrayList<Book> listOfBooks){
+    public ArrayList<Book> checkOutBook(int index, ArrayList<Book> listOfBooks){
 
         if ((index >= 0) && (index <= listOfBooks.size())){
             if (listOfBooks.get(index).getAvailability()){
                 listOfBooks.get(index).setAvailability(false);
-                return true;
+                return getAvailableBooks(listOfBooks);
             }else{
-                return false;
+                return null;
             }
         }else{
-            return false;
+            return null;
         }
     }
 
@@ -67,7 +67,7 @@ public class BibliotecaFunctions {
 
     public void printListOfOptions(ArrayList<Option> listOfOptions){
         for (int i = 0; i < listOfOptions.size(); i++){
-            System.out.println(listOfOptions.get(i).getNumber()+") "+listOfOptions.get(i).getText());
+            System.out.println(listOfOptions.get(i).toString());
         }
     }
 
@@ -92,6 +92,32 @@ public class BibliotecaFunctions {
 
         }
 
+    }
+
+    public ArrayList<Book> getNotAvailableBooks(ArrayList<Book> listOfBooks){
+        ArrayList<Book> auxList = new ArrayList<Book>();
+
+        for (int i = 0; i < listOfBooks.size(); i++){
+            if (!listOfBooks.get(i).getAvailability()){
+                auxList.add(listOfBooks.get(i));
+            }
+
+        }
+
+        return auxList;
+    }
+
+    public ArrayList<Book> getAvailableBooks(ArrayList<Book> listOfBooks){
+        ArrayList<Book> auxList = new ArrayList<Book>();
+
+        for (int i = 0; i < listOfBooks.size(); i++){
+            if (listOfBooks.get(i).getAvailability()){
+                auxList.add(listOfBooks.get(i));
+            }
+
+        }
+
+        return auxList;
     }
 
     public boolean isAnyBookToReturn(ArrayList<Book> listOfBooks){

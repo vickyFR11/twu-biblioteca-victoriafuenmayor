@@ -38,7 +38,7 @@ public class BibliotecaApp {
 
                     if (functions.verifyValidOption(text, listOfBooks.size())){
                         index = Integer.parseInt(text);
-                        if (functions.checkOutBook(index-1, listOfBooks)){
+                        if (functions.checkOutBook(index-1, listOfBooks) != null){
                             System.out.println("THANK YOU! ENJOY YOUR BOOK.");
                         }else{
                             System.out.println("THAT BOOK IS NOT AVAILABLE");
@@ -49,14 +49,14 @@ public class BibliotecaApp {
 
                 }else if(option == 3){
                     if (functions.isAnyBookToReturn(listOfBooks)){
-                        functions.printNotAvailableBooks(listOfBooks);
+                        functions.printNotAvailableBooks(functions.getNotAvailableBooks(listOfBooks));
                         System.out.println("Enter the number of the book to return: ");
 
                         text = read.next();
 
-                        if (functions.verifyValidOption(text, listOfBooks.size())){
+                        if (functions.verifyValidOption(text, functions.getNotAvailableBooks(listOfBooks).size())){
                             index = Integer.parseInt(text);
-                            if (functions.returnBook(index-1, listOfBooks)){
+                            if (functions.returnBook(index-1, functions.getNotAvailableBooks(listOfBooks))){
                                 System.out.println("THANK YOU FOR RETURNING THE BOOK!");
                             }else{
                                 System.out.println("THAT BOOK IS NOT A VALID BOOK TO RETURN");

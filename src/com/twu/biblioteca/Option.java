@@ -17,4 +17,9 @@ public class Option {
         return text;
     }
 
+    @Override
+    public String toString(){
+        return number + ") "+text;
+    }
+
 }
