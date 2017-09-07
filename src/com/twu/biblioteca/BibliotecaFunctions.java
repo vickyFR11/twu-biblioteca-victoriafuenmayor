@@ -5,12 +5,12 @@ import java.util.ArrayList;
 public class BibliotecaFunctions {
 
     public void addBooksToTheList(ArrayList<Book> listOfBooks) {
-        listOfBooks.add(new Book("Growing Object-Oriented Software", "Steve Freeman", 2010));
-        listOfBooks.add(new Book("Working Effectively With Legacy Code", "Michael C. Feathers", 2005));
-        listOfBooks.add(new Book("xUnit Test Patterns: Refactoring Test Code", "Gerard Meszaros", 2007));
-        listOfBooks.add(new Book("Object-Oriented JavaScript", "Ved Antani", 2017));
-        listOfBooks.add(new Book("Patterns of Enterprise Application Architecture", "Martin Fowler", 2003));
-        listOfBooks.add(new Book("Clean Code: A Handbook of Agile Software Craftsmanship", "Robert C. Martin", 2009));
+        listOfBooks.add(new Book(1, "Growing Object-Oriented Software", "Steve Freeman", 2010));
+        listOfBooks.add(new Book(2, "Working Effectively With Legacy Code", "Michael C. Feathers", 2005));
+        listOfBooks.add(new Book(3, "xUnit Test Patterns: Refactoring Test Code", "Gerard Meszaros", 2007));
+        listOfBooks.add(new Book(4, "Object-Oriented JavaScript", "Ved Antani", 2017));
+        listOfBooks.add(new Book(5, "Patterns of Enterprise Application Architecture", "Martin Fowler", 2003));
+        listOfBooks.add(new Book(6, "Clean Code: A Handbook of Agile Software Craftsmanship", "Robert C. Martin", 2009));
     }
 
     public void addOptionsToTheList(ArrayList<Option> listOfOptions) {
@@ -40,7 +40,7 @@ public class BibliotecaFunctions {
         if ((index >= 0) && (index <= listOfBooks.size())) {
             if (listOfBooks.get(index).getAvailability()) {
                 listOfBooks.get(index).setAvailability(false);
-                return getAvailableBooks(listOfBooks);
+                return listOfBooks;
             } else {
                 return null;
             }
@@ -50,7 +50,7 @@ public class BibliotecaFunctions {
     }
 
     public boolean returnBook(int index, ArrayList<Book> listOfBooks) {
-        if (isAnyBookToReturn(listOfBooks)) {
+        if (booksToReturn(listOfBooks)) {
             if ((index >= 0) && (index <= listOfBooks.size())) {
                 listOfBooks.get(index).setAvailability(true);
                 return true;
@@ -65,33 +65,13 @@ public class BibliotecaFunctions {
     }
 
 
-    public void printListOfOptions(ArrayList<Option> listOfOptions) {
-        for (int i = 0; i < listOfOptions.size(); i++) {
-            System.out.println(listOfOptions.get(i).toString());
-        }
-    }
-
-
-    public void printAvailableBooks(ArrayList<Book> listOfBooks) {
-
-        for (int i = 0; i < listOfBooks.size(); i++) {
-            if (listOfBooks.get(i).getAvailability()) {
-                System.out.println((i + 1) + listOfBooks.get(i).toString());
-            }
-
+    public String printListOfOptions(ArrayList<Option> listOfOptions) {
+        String optionList = "";
+        for (Option option : listOfOptions) {
+            optionList += option.toString();
         }
 
-    }
-
-    public void printNotAvailableBooks(ArrayList<Book> listOfBooks) {
-
-        for (int i = 0; i < listOfBooks.size(); i++) {
-            if (!listOfBooks.get(i).getAvailability()) {
-                System.out.println((i + 1) + listOfBooks.get(i).toString());
-            }
-
-        }
-
+        return optionList;
     }
 
     public ArrayList<Book> getNotAvailableBooks(ArrayList<Book> listOfBooks) {
@@ -120,13 +100,12 @@ public class BibliotecaFunctions {
         return auxList;
     }
 
-    public boolean isAnyBookToReturn(ArrayList<Book> listOfBooks) {
-        for (int i = 0; i < listOfBooks.size(); i++) {
-            if (!listOfBooks.get(i).getAvailability()) {
-                return true;
-            }
+    public boolean booksToReturn(ArrayList<Book> listOfBooks) {
+        if (listOfBooks.isEmpty()) {
+            return false;
+        } else {
+            return true;
         }
-        return false;
     }
 
     public String print(ArrayList<Book> listOfBooks) {
@@ -136,7 +115,7 @@ public class BibliotecaFunctions {
         if (listOfBooks.isEmpty()) {
             return null;
         } else {
-            for (Book book : listOfBooks){
+            for (Book book : listOfBooks) {
                 nameOfBooksList += book.toString();
             }
 

@@ -25,7 +25,7 @@ public class MenuTest {
     }
 
     @Test
-    public void successfulOptionSelectionAtMainMenu(){
+    public void successfulOptionSelectionAtMainMenu() {
         boolean resultValue = functions.verifyValidOption("2", listOfOptions.size());
         boolean expectedValue = true;
 
@@ -33,7 +33,7 @@ public class MenuTest {
     }
 
     @Test
-    public void outOfRangeOptionSelectionAtMainMenu(){
+    public void outOfRangeOptionSelectionAtMainMenu() {
         boolean resultValue = functions.verifyValidOption("8", listOfOptions.size());
         boolean expectedValue = false;
 
@@ -41,7 +41,7 @@ public class MenuTest {
     }
 
     @Test
-    public void insertTextAsOptionAtMainMenu(){
+    public void insertTextAsOptionAtMainMenu() {
         boolean resultValue = functions.verifyValidOption("hola", listOfOptions.size());
         boolean expectedValue = false;
 

@@ -9,10 +9,11 @@ public class BibliotecaApp {
         String text = "";
         int option = 0, index = 0;
         BibliotecaFunctions functions = new BibliotecaFunctions();
-        ArrayList<Book> listOfBooks = new ArrayList<Book>();
+        ArrayList<Book> availableBooks = new ArrayList<Book>();
+        ArrayList<Book> notAvailableBooks = new ArrayList<Book>();
         ArrayList<Option> listOfOptions = new ArrayList<Option>();
 
-        functions.addBooksToTheList(listOfBooks);
+        functions.addBooksToTheList(availableBooks);
         functions.addOptionsToTheList(listOfOptions);
 
         Scanner read = new Scanner(System.in);
@@ -21,14 +22,14 @@ public class BibliotecaApp {
             System.out.println("");
             System.out.println("Welcome to Biblioteca!");
             System.out.println("Select one of the following options: ");
-            functions.printListOfOptions(listOfOptions);
+            System.out.println(functions.printListOfOptions(listOfOptions));
 
             text = read.next();
             if (functions.verifyValidOption(text, listOfOptions.size())) {
                 option = Integer.parseInt(text);
 
                 if (option == 1) {
-                    functions.printAvailableBooks(listOfBooks);
+                    System.out.println(functions.print(functions.getAvailableBooks(availableBooks)));
 
                 } else if (option == 2) {
 
@@ -36,48 +37,51 @@ public class BibliotecaApp {
 
                     text = read.next();
 
-                    if (functions.verifyValidOption(text, listOfBooks.size())){
+                    if (functions.verifyValidOption(text, availableBooks.size())) {
                         index = Integer.parseInt(text);
-                        if (functions.checkOutBook(index-1, listOfBooks) != null){
+                        ArrayList<Book> books = functions.checkOutBook(index - 1, availableBooks);
+                        if (books != null) {
                             System.out.println("THANK YOU! ENJOY YOUR BOOK.");
-                        }else{
+                            availableBooks = books;
+                        } else {
                             System.out.println("THAT BOOK IS NOT AVAILABLE");
                         }
-                    }else{
+                    } else {
                         System.out.println("THAT BOOK IS NOT AVAILABLE");
                     }
 
-                }else if(option == 3){
-                    if (functions.isAnyBookToReturn(listOfBooks)){
-                        functions.printNotAvailableBooks(functions.getNotAvailableBooks(listOfBooks));
+                } else if (option == 3) {
+                    notAvailableBooks = functions.getNotAvailableBooks(availableBooks);
+                    if (functions.booksToReturn(notAvailableBooks)) {
+                        System.out.println(functions.print(notAvailableBooks));
 
                         System.out.println("Enter the number of the book to return: ");
 
                         text = read.next();
 
-                        if (functions.verifyValidOption(text, functions.getNotAvailableBooks(listOfBooks).size())){
+                        if (functions.verifyValidOption(text, notAvailableBooks.size())) {
                             index = Integer.parseInt(text);
-                            if (functions.returnBook(index-1, functions.getNotAvailableBooks(listOfBooks))){
+                            if (functions.returnBook(index - 1, notAvailableBooks)) {
                                 System.out.println("THANK YOU FOR RETURNING THE BOOK!");
-                            }else{
+                            } else {
                                 System.out.println("THAT BOOK IS NOT A VALID BOOK TO RETURN");
                             }
-                        }else{
+                        } else {
                             System.out.println("THAT BOOK IS NOT A VALID BOOK TO RETURN");
                         }
-                    }else{
+                    } else {
                         System.out.println("NO BOOKS TO RETURN");
                     }
 
                 }
 
-            }else{
+            } else {
                 System.out.println("SELECT A VALID OPTION");
                 System.out.println("");
             }
 
 
-        }while ((option != listOfOptions.size()));
+        } while ((option != listOfOptions.size()));
 
 
     }

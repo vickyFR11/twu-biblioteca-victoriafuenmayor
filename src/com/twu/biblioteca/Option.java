@@ -2,9 +2,9 @@ package com.twu.biblioteca;
 
 public class Option {
     private int number;
-    private  String text;
+    private String text;
 
-    public Option(int number, String text){
+    public Option(int number, String text) {
         this.number = number;
         this.text = text;
     }
@@ -18,8 +18,8 @@ public class Option {
     }
 
     @Override
-    public String toString(){
-        return number + ") "+text;
+    public String toString() {
+        return number + ") " + text + "\n";
     }
 
 }

@@ -14,9 +14,9 @@ public class BibliotecaFunctionsTest {
 
     @Test
     public void successfulPrintOfOneBookList() {
-        String detailsOfBook = " Growing Object-Oriented Software Steve Freeman 2010\n";
+        String detailsOfBook = "1) Growing Object-Oriented Software Steve Freeman 2010\n";
 
-        listOfBooks.add(new Book("Growing Object-Oriented Software","Steve Freeman", 2010));
+        listOfBooks.add(new Book(1,"Growing Object-Oriented Software", "Steve Freeman", 2010));
 
         String printedList = bibliotecaFunctions.print(listOfBooks);
 
@@ -34,14 +34,14 @@ public class BibliotecaFunctionsTest {
 
     @Test
     public void successfulPrintBooksList() {
-        String detailsOfBooks = " Growing Object-Oriented Software Steve Freeman 2010\n" +
-                      " Working Effectively With Legacy Code Michael C. Feathers 2005\n" +
-                      " xUnit Test Patterns: Refactoring Test Code Gerard Meszaros 2007\n";
+        String detailsOfBooks = "1) Growing Object-Oriented Software Steve Freeman 2010\n" +
+                "2) Working Effectively With Legacy Code Michael C. Feathers 2005\n" +
+                "3) xUnit Test Patterns: Refactoring Test Code Gerard Meszaros 2007\n";
 
 
-        listOfBooks.add(new Book("Growing Object-Oriented Software","Steve Freeman", 2010));
-        listOfBooks.add(new Book("Working Effectively With Legacy Code","Michael C. Feathers", 2005));
-        listOfBooks.add(new Book("xUnit Test Patterns: Refactoring Test Code","Gerard Meszaros", 2007));
+        listOfBooks.add(new Book(1,"Growing Object-Oriented Software", "Steve Freeman", 2010));
+        listOfBooks.add(new Book(2,"Working Effectively With Legacy Code", "Michael C. Feathers", 2005));
+        listOfBooks.add(new Book(3,"xUnit Test Patterns: Refactoring Test Code", "Gerard Meszaros", 2007));
 
         String printedList = bibliotecaFunctions.print(listOfBooks);
 
