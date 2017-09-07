@@ -108,6 +108,31 @@ public class BibliotecaFunctions {
         }
     }
 
+    public boolean userLogin(String userLibraryNumber, String userPassword, ArrayList<User> usersList){
+        if (checkLibraryNumberFormat(userLibraryNumber)){
+            for(User user : usersList){
+                if ((user.getLibraryNumber() == userLibraryNumber) && (user.getPassword() == userPassword)){
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+
+    private boolean checkLibraryNumberFormat(String userLibraryNumber){
+        String[] splitResult = userLibraryNumber.split("-");
+
+        if (splitResult.length > 0 && splitResult.length <= 2){
+            if ((splitResult[0].length() == 3) && (splitResult[1].length() == 4)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public String print(ArrayList<Book> listOfBooks) {
 
         String nameOfBooksList = "";
