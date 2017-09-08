@@ -3,9 +3,12 @@ package com.twu.biblioteca;
 import java.util.ArrayList;
 
 public class User {
+    private int id;
     private String name;
     private String libraryNumber;
     private String password;
+    private String email;
+    private String phoneNumber;
 
     public User(String name) {
 
@@ -19,12 +22,30 @@ public class User {
         this.password = password;
     }
 
+    public User(int id, String name, String libraryNumber, String password, String email, String phoneNumber) {
+        this.id = id;
+        this.name = name;
+        this.libraryNumber = libraryNumber;
+        this.password = password;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+    }
+
     public String getLibraryNumber() {
         return libraryNumber;
     }
 
+    public int getUserId(){
+        return id;
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String toString() {
+        return " "+name+" "+email+" "+phoneNumber+"\n";
     }
 
     @Override

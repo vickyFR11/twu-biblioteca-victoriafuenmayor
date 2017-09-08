@@ -133,6 +133,17 @@ public class BibliotecaFunctions {
         return false;
     }
 
+    public String getUserInformation(int userId, ArrayList<User> userList){
+        String userInformation = "";
+        for (User user : userList){
+            if (user.getUserId() == userId){
+                userInformation = user.toString();
+            }
+
+        }
+        return userInformation;
+    }
+
     public String print(ArrayList<Book> listOfBooks) {
 
         String nameOfBooksList = "";

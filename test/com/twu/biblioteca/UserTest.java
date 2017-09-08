@@ -96,4 +96,42 @@ public class UserTest {
 
         assertEquals(expectedValue, wasUnsuccessfulLogin);
     }
+
+
+    @Test
+    public void returnUserInformationById() {
+        BibliotecaFunctions bibliotecaFunctions = new BibliotecaFunctions();
+        String userInformation = " Victoria victoria@biblioteca.cl +569123456\n";
+        int userId = 3;
+
+        ArrayList<User> usersList = new ArrayList<User>();
+
+        usersList.add(new User(1,"Felipe", "345-6789", "key1", "felipe@tw.com","+561287900"));
+        usersList.add(new User(2,"Karina", "111-2222", "key2", "karina@tw.com", "+561236789"));
+        usersList.add(new User(3,"Victoria", "123-4567", "key123", "victoria@biblioteca.cl", "+569123456"));
+
+        String returnedValue = bibliotecaFunctions.getUserInformation(userId, usersList);
+
+        assertEquals(userInformation, returnedValue);
+    }
+
+    @Test
+    public void returnEmptyUserInformationById() {
+        BibliotecaFunctions bibliotecaFunctions = new BibliotecaFunctions();
+        String userInformation = "";
+        int userId = 0;
+
+        ArrayList<User> usersList = new ArrayList<User>();
+
+        usersList.add(new User(1,"Felipe", "345-6789", "key1", "felipe@tw.com","+561287900"));
+        usersList.add(new User(2,"Karina", "111-2222", "key2", "karina@tw.com", "+561236789"));
+        usersList.add(new User(3,"Victoria", "123-4567", "key123", "victoria@biblioteca.cl", "+569123456"));
+
+        String returnedValue = bibliotecaFunctions.getUserInformation(userId, usersList);
+
+        assertEquals(userInformation, returnedValue);
+    }
+
+
+
 }
