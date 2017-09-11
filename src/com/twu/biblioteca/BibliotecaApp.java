@@ -47,7 +47,7 @@ public class BibliotecaApp {
                     String userPassword = read.next();
 
                     userLogged = functions.userLogin(libraryNumber, userPassword, listOfUsers, listOfOptions);
-                    if (userLogged != null){
+                    if (userLogged != null) {
                         System.out.println("Enter the number of the book to Check-Out: ");
 
                         text = read.next();
@@ -64,19 +64,19 @@ public class BibliotecaApp {
                         } else {
                             System.out.println("THAT BOOK IS NOT AVAILABLE");
                         }
-                    }else{
+                    } else {
                         System.out.println("INCORRECT USER OR PASSWORD");
                     }
 
 
-                }else if (option == 4){
+                } else if (option == 4) {
                     System.out.println("Enter the number of the movie to Check-Out: ");
 
                     text = read.next();
 
                     if (functions.verifyValidOption(text, listOfMovies.size())) {
                         index = Integer.parseInt(text);
-                        if(functions.checkOutMovie(index, listOfMovies)){
+                        if (functions.checkOutMovie(index, listOfMovies)) {
                             System.out.println("THANK YOU! ENJOY YOUR MOVIE.");
                         } else {
                             System.out.println("THAT MOVIE IS NOT AVAILABLE");
@@ -85,7 +85,7 @@ public class BibliotecaApp {
                         System.out.println("THAT MOVIE IS NOT AVAILABLE");
                     }
 
-                }else if (option == 5){
+                } else if (option == 5) {
                     notAvailableBooks = functions.getNotAvailableBooks(availableBooks);
                     if (functions.booksToReturn(notAvailableBooks)) {
                         System.out.println(functions.print(notAvailableBooks));
@@ -107,9 +107,9 @@ public class BibliotecaApp {
                     } else {
                         System.out.println("NO BOOKS TO RETURN");
                     }
-                }else if (option == 6){
+                } else if (option == 6) {
 
-                    System.out.println("User:"+functions.getUserInformation(userLogged.getUserId(),listOfUsers));
+                    System.out.println("User:" + functions.getUserInformation(userLogged.getUserId(), listOfUsers));
 
                 }
 

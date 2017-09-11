@@ -3,6 +3,7 @@ package com.twu.biblioteca;
 import java.util.ArrayList;
 
 public class BibliotecaFunctions {
+    boolean isOptionAdded = false;
 
     public void addBooksToTheList(ArrayList<Book> listOfBooks) {
         listOfBooks.add(new Book(1, "Growing Object-Oriented Software", "Steve Freeman", 2010));
@@ -30,9 +31,9 @@ public class BibliotecaFunctions {
     }
 
     public void addUsersToTheList(ArrayList<User> usersList) {
-        usersList.add(new User(1,"Felipe", "345-6789", "key1", "felipe@tw.com","+561287900"));
-        usersList.add(new User(2,"Karina", "111-2222", "key2", "karina@tw.com", "+561236789"));
-        usersList.add(new User(3,"Victoria", "123-4567", "key123", "victoria@biblioteca.cl", "+569123456"));
+        usersList.add(new User(1, "Felipe", "345-6789", "key1", "felipe@tw.com", "+561287900"));
+        usersList.add(new User(2, "Karina", "111-2222", "key2", "karina@tw.com", "+561236789"));
+        usersList.add(new User(3, "Victoria", "123-4567", "key123", "victoria@biblioteca.cl", "+569123456"));
     }
 
     public boolean verifyValidOption(String text, int size) {
@@ -50,10 +51,10 @@ public class BibliotecaFunctions {
         }
     }
 
-    public Book getBook(int index, ArrayList<Book> listOfBooks){
-        if (!listOfBooks.isEmpty()){
-            for (Book book : listOfBooks){
-                if (book.getBookId() == index){
+    public Book getBook(int index, ArrayList<Book> listOfBooks) {
+        if (!listOfBooks.isEmpty()) {
+            for (Book book : listOfBooks) {
+                if (book.getBookId() == index) {
                     return book;
                 }
             }
@@ -78,10 +79,10 @@ public class BibliotecaFunctions {
     public boolean returnBook(int index, ArrayList<Book> listOfBooks) {
         if (booksToReturn(listOfBooks)) {
             Book book = getBook(index, listOfBooks);
-            if (book != null){
+            if (book != null) {
                 book.setAvailability(true);
                 return true;
-            }else{
+            } else {
                 return false;
             }
         } else {
@@ -134,10 +135,10 @@ public class BibliotecaFunctions {
         }
     }
 
-    public User userLogin(String userLibraryNumber, String userPassword, ArrayList<User> usersList, ArrayList<Option> listOfOption){
-        if (checkLibraryNumberFormat(userLibraryNumber)){
-            for(User user : usersList){
-                if ((user.getLibraryNumber().equals(userLibraryNumber)) && (user.getPassword().equals(userPassword))){
+    public User userLogin(String userLibraryNumber, String userPassword, ArrayList<User> usersList, ArrayList<Option> listOfOption) {
+        if (checkLibraryNumberFormat(userLibraryNumber)) {
+            for (User user : usersList) {
+                if ((user.getLibraryNumber().equals(userLibraryNumber)) && (user.getPassword().equals(userPassword))) {
                     addShowUserInformationOption(listOfOption);
                     return user;
                 }
@@ -147,20 +148,21 @@ public class BibliotecaFunctions {
         return null;
     }
 
-    public void addShowUserInformationOption(ArrayList<Option> listOfOptions){
+    public void addShowUserInformationOption(ArrayList<Option> listOfOptions) {
         Option lastOption = new Option("Quit");
 
-        listOfOptions.get(listOfOptions.size() - 1).setText("Show User Information");
-        lastOption.setNumber(listOfOptions.size()+1);
-        listOfOptions.add(lastOption);
-
-
+        if (!isOptionAdded) {
+            listOfOptions.get(listOfOptions.size() - 1).setText("Show User Information");
+            lastOption.setNumber(listOfOptions.size() + 1);
+            listOfOptions.add(lastOption);
+            isOptionAdded = true;
+        }
     }
 
-    private boolean checkLibraryNumberFormat(String userLibraryNumber){
+    private boolean checkLibraryNumberFormat(String userLibraryNumber) {
         String[] splitResult = userLibraryNumber.split("-");
 
-        if (splitResult.length > 0 && splitResult.length <= 2){
+        if (splitResult.length > 0 && splitResult.length <= 2) {
             if ((splitResult[0].length() == 3) && (splitResult[1].length() == 4)) {
                 return true;
             }
@@ -169,9 +171,9 @@ public class BibliotecaFunctions {
         return false;
     }
 
-    public boolean checkOutMovie(int movieId, ArrayList<Movie> moviesList){
-        if (!moviesList.isEmpty()){
-            for (Movie movie : moviesList){
+    public boolean checkOutMovie(int movieId, ArrayList<Movie> moviesList) {
+        if (!moviesList.isEmpty()) {
+            for (Movie movie : moviesList) {
                 if ((movie.id == movieId) && (!movie.isCheckout)) {
                     movie.isCheckout = true;
                     return movie.isCheckout;
@@ -181,10 +183,10 @@ public class BibliotecaFunctions {
         return false;
     }
 
-    public String getUserInformation(int userId, ArrayList<User> userList){
+    public String getUserInformation(int userId, ArrayList<User> userList) {
         String userInformation = "";
-        for (User user : userList){
-            if (user.getUserId() == userId){
+        for (User user : userList) {
+            if (user.getUserId() == userId) {
                 userInformation = user.toString();
             }
 

@@ -48,9 +48,9 @@ public class UserTest {
         String userPassword = "key123";
         ArrayList<User> usersList = new ArrayList<User>();
 
-        usersList.add(new User(1,"Felipe", "345-6789", "key1", "felipe@tw.com","+561287900"));
-        usersList.add(new User(2,"Karina", "111-2222", "key2", "karina@tw.com", "+561236789"));
-        usersList.add(new User(3,"Victoria", "123-4567", "key123", "victoria@biblioteca.cl", "+569123456"));
+        usersList.add(new User(1, "Felipe", "345-6789", "key1", "felipe@tw.com", "+561287900"));
+        usersList.add(new User(2, "Karina", "111-2222", "key2", "karina@tw.com", "+561236789"));
+        usersList.add(new User(3, "Victoria", "123-4567", "key123", "victoria@biblioteca.cl", "+569123456"));
 
         User userLogged = bibliotecaFunctions.userLogin(userLibraryNumber, userPassword, usersList, listOfOptions);
         int userIdExpected = 3;
@@ -84,9 +84,9 @@ public class UserTest {
         String userPassword = "key123";
         ArrayList<User> usersList = new ArrayList<User>();
 
-        usersList.add(new User(1,"Felipe", "345-6789", "key1", "felipe@tw.com","+561287900"));
-        usersList.add(new User(2,"Karina", "111-2222", "key2", "karina@tw.com", "+561236789"));
-        usersList.add(new User(3,"Victoria", "123-4567", "key123", "victoria@biblioteca.cl", "+569123456"));
+        usersList.add(new User(1, "Felipe", "345-6789", "key1", "felipe@tw.com", "+561287900"));
+        usersList.add(new User(2, "Karina", "111-2222", "key2", "karina@tw.com", "+561236789"));
+        usersList.add(new User(3, "Victoria", "123-4567", "key123", "victoria@biblioteca.cl", "+569123456"));
 
         User userLogged = bibliotecaFunctions.userLogin(userLibraryNumber, userPassword, usersList, listOfOptions);
         int userIdExpected = 3;
@@ -121,9 +121,9 @@ public class UserTest {
 
         ArrayList<User> usersList = new ArrayList<User>();
 
-        usersList.add(new User(1,"Felipe", "345-6789", "key1", "felipe@tw.com","+561287900"));
-        usersList.add(new User(2,"Karina", "111-2222", "key2", "karina@tw.com", "+561236789"));
-        usersList.add(new User(3,"Victoria", "123-4567", "key123", "victoria@biblioteca.cl", "+569123456"));
+        usersList.add(new User(1, "Felipe", "345-6789", "key1", "felipe@tw.com", "+561287900"));
+        usersList.add(new User(2, "Karina", "111-2222", "key2", "karina@tw.com", "+561236789"));
+        usersList.add(new User(3, "Victoria", "123-4567", "key123", "victoria@biblioteca.cl", "+569123456"));
 
         String returnedValue = bibliotecaFunctions.getUserInformation(userId, usersList);
 
@@ -138,9 +138,9 @@ public class UserTest {
 
         ArrayList<User> usersList = new ArrayList<User>();
 
-        usersList.add(new User(1,"Felipe", "345-6789", "key1", "felipe@tw.com","+561287900"));
-        usersList.add(new User(2,"Karina", "111-2222", "key2", "karina@tw.com", "+561236789"));
-        usersList.add(new User(3,"Victoria", "123-4567", "key123", "victoria@biblioteca.cl", "+569123456"));
+        usersList.add(new User(1, "Felipe", "345-6789", "key1", "felipe@tw.com", "+561287900"));
+        usersList.add(new User(2, "Karina", "111-2222", "key2", "karina@tw.com", "+561236789"));
+        usersList.add(new User(3, "Victoria", "123-4567", "key123", "victoria@biblioteca.cl", "+569123456"));
 
         String returnedValue = bibliotecaFunctions.getUserInformation(userId, usersList);
 
