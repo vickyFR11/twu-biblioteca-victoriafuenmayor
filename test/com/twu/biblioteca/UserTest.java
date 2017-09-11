@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -8,6 +9,20 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 public class UserTest {
+
+    private ArrayList<Option> listOfOptions;
+
+    @Before
+    public void setUp() throws Exception {
+        listOfOptions = new ArrayList<Option>();
+
+        listOfOptions.add(new Option(1, "List of Books"));
+        listOfOptions.add(new Option(2, "List of Movies"));
+        listOfOptions.add(new Option(3, "Check-Out a Book"));
+        listOfOptions.add(new Option(4, "Check-Out a Movie"));
+        listOfOptions.add(new Option(5, "Return a Book"));
+        listOfOptions.add(new Option(6, "Quit"));
+    }
 
     @Test
     public void successfulUserReturnWithName() {
@@ -33,14 +48,14 @@ public class UserTest {
         String userPassword = "key123";
         ArrayList<User> usersList = new ArrayList<User>();
 
-        usersList.add(new User("Felipe", "345-6789", "key1"));
-        usersList.add(new User("Karina", "111-2222", "key2"));
-        usersList.add(new User("Victoria", "123-4567", "key123"));
+        usersList.add(new User(1,"Felipe", "345-6789", "key1", "felipe@tw.com","+561287900"));
+        usersList.add(new User(2,"Karina", "111-2222", "key2", "karina@tw.com", "+561236789"));
+        usersList.add(new User(3,"Victoria", "123-4567", "key123", "victoria@biblioteca.cl", "+569123456"));
 
-        boolean wasSuccessfulLogin = bibliotecaFunctions.userLogin(userLibraryNumber, userPassword, usersList);
-        boolean expectedValue = true;
+        User userLogged = bibliotecaFunctions.userLogin(userLibraryNumber, userPassword, usersList, listOfOptions);
+        int userIdExpected = 3;
 
-        assertEquals(expectedValue, wasSuccessfulLogin);
+        assertEquals(userIdExpected, userLogged.getUserId());
     }
 
     @Test
@@ -55,10 +70,10 @@ public class UserTest {
         usersList.add(new User("Karina", "111-2222", "key2"));
         usersList.add(new User("Victoria", "123-4567", "key123"));
 
-        boolean wasSuccessfulLogin = bibliotecaFunctions.userLogin(userLibraryNumber, userPassword, usersList);
-        boolean expectedValue = false;
+        User userLogged = bibliotecaFunctions.userLogin(userLibraryNumber, userPassword, usersList, listOfOptions);
+        User userExpected = null;
 
-        assertEquals(expectedValue, wasSuccessfulLogin);
+        assertEquals(userExpected, userLogged);
     }
 
     @Test
@@ -69,14 +84,14 @@ public class UserTest {
         String userPassword = "key123";
         ArrayList<User> usersList = new ArrayList<User>();
 
-        usersList.add(new User("Felipe", "345-6789", "key1"));
-        usersList.add(new User("Karina", "111-2222", "key2"));
-        usersList.add(new User("Victoria", "123-4567", "key123"));
+        usersList.add(new User(1,"Felipe", "345-6789", "key1", "felipe@tw.com","+561287900"));
+        usersList.add(new User(2,"Karina", "111-2222", "key2", "karina@tw.com", "+561236789"));
+        usersList.add(new User(3,"Victoria", "123-4567", "key123", "victoria@biblioteca.cl", "+569123456"));
 
-        boolean wasSuccessfulLogin = bibliotecaFunctions.userLogin(userLibraryNumber, userPassword, usersList);
-        boolean expectedValue = true;
+        User userLogged = bibliotecaFunctions.userLogin(userLibraryNumber, userPassword, usersList, listOfOptions);
+        int userIdExpected = 3;
 
-        assertEquals(expectedValue, wasSuccessfulLogin);
+        assertEquals(userIdExpected, userLogged.getUserId());
     }
 
     @Test
@@ -91,10 +106,10 @@ public class UserTest {
         usersList.add(new User("Karina", "111-2222", "key2"));
         usersList.add(new User("Victoria", "123-4567", "key123"));
 
-        boolean wasUnsuccessfulLogin = bibliotecaFunctions.userLogin(userLibraryNumber, userPassword, usersList);
-        boolean expectedValue = false;
+        User userLogged = bibliotecaFunctions.userLogin(userLibraryNumber, userPassword, usersList, listOfOptions);
+        User userExpected = null;
 
-        assertEquals(expectedValue, wasUnsuccessfulLogin);
+        assertEquals(userExpected, userLogged);
     }
 
 
@@ -131,7 +146,5 @@ public class UserTest {
 
         assertEquals(userInformation, returnedValue);
     }
-
-
 
 }

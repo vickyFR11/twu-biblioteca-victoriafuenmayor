@@ -12,9 +12,14 @@ public class BibliotecaApp {
         ArrayList<Book> availableBooks = new ArrayList<Book>();
         ArrayList<Book> notAvailableBooks = new ArrayList<Book>();
         ArrayList<Option> listOfOptions = new ArrayList<Option>();
+        ArrayList<Movie> listOfMovies = new ArrayList<Movie>();
+        ArrayList<User> listOfUsers = new ArrayList<User>();
+        User userLogged = new User("New User");
 
         functions.addBooksToTheList(availableBooks);
         functions.addOptionsToTheList(listOfOptions);
+        functions.addMoviesToTheList(listOfMovies);
+        functions.addUsersToTheList(listOfUsers);
 
         Scanner read = new Scanner(System.in);
 
@@ -32,25 +37,55 @@ public class BibliotecaApp {
                     System.out.println(functions.print(functions.getAvailableBooks(availableBooks)));
 
                 } else if (option == 2) {
+                    System.out.println(functions.printMovies(listOfMovies));
 
-                    System.out.println("Enter the number of the book to Check-Out: ");
+                } else if (option == 3) {
+                    System.out.println("Please login");
+                    System.out.println("Enter your Library Number (xxx-xxxx): ");
+                    String libraryNumber = read.next();
+                    System.out.println("Enter your Password: ");
+                    String userPassword = read.next();
 
-                    text = read.next();
+                    userLogged = functions.userLogin(libraryNumber, userPassword, listOfUsers, listOfOptions);
+                    if (userLogged != null){
+                        System.out.println("Enter the number of the book to Check-Out: ");
 
-                    if (functions.verifyValidOption(text, availableBooks.size())) {
-                        index = Integer.parseInt(text);
-                        ArrayList<Book> books = functions.checkOutBook(index - 1, availableBooks);
-                        if (books != null) {
-                            System.out.println("THANK YOU! ENJOY YOUR BOOK.");
-                            availableBooks = books;
+                        text = read.next();
+
+                        if (functions.verifyValidOption(text, availableBooks.size())) {
+                            index = Integer.parseInt(text);
+                            ArrayList<Book> books = functions.checkOutBook(index - 1, availableBooks);
+                            if (books != null) {
+                                System.out.println("THANK YOU! ENJOY YOUR BOOK.");
+                                availableBooks = books;
+                            } else {
+                                System.out.println("THAT BOOK IS NOT AVAILABLE");
+                            }
                         } else {
                             System.out.println("THAT BOOK IS NOT AVAILABLE");
                         }
-                    } else {
-                        System.out.println("THAT BOOK IS NOT AVAILABLE");
+                    }else{
+                        System.out.println("INCORRECT USER OR PASSWORD");
                     }
 
-                } else if (option == 3) {
+
+                }else if (option == 4){
+                    System.out.println("Enter the number of the movie to Check-Out: ");
+
+                    text = read.next();
+
+                    if (functions.verifyValidOption(text, listOfMovies.size())) {
+                        index = Integer.parseInt(text);
+                        if(functions.checkOutMovie(index, listOfMovies)){
+                            System.out.println("THANK YOU! ENJOY YOUR MOVIE.");
+                        } else {
+                            System.out.println("THAT MOVIE IS NOT AVAILABLE");
+                        }
+                    } else {
+                        System.out.println("THAT MOVIE IS NOT AVAILABLE");
+                    }
+
+                }else if (option == 5){
                     notAvailableBooks = functions.getNotAvailableBooks(availableBooks);
                     if (functions.booksToReturn(notAvailableBooks)) {
                         System.out.println(functions.print(notAvailableBooks));
@@ -59,9 +94,9 @@ public class BibliotecaApp {
 
                         text = read.next();
 
-                        if (functions.verifyValidOption(text, notAvailableBooks.size())) {
+                        if (functions.verifyValidOption(text, availableBooks.size())) {
                             index = Integer.parseInt(text);
-                            if (functions.returnBook(index - 1, notAvailableBooks)) {
+                            if (functions.returnBook(index, notAvailableBooks)) {
                                 System.out.println("THANK YOU FOR RETURNING THE BOOK!");
                             } else {
                                 System.out.println("THAT BOOK IS NOT A VALID BOOK TO RETURN");
@@ -72,6 +107,9 @@ public class BibliotecaApp {
                     } else {
                         System.out.println("NO BOOKS TO RETURN");
                     }
+                }else if (option == 6){
+
+                    System.out.println("User:"+functions.getUserInformation(userLogged.getUserId(),listOfUsers));
 
                 }
 

@@ -48,5 +48,31 @@ public class BibliotecaFunctionsTest {
         assertEquals(detailsOfBooks, printedList);
     }
 
+    @Test
+    public void successfulGetBookById() {
+        listOfBooks.add(new Book(1,"Growing Object-Oriented Software", "Steve Freeman", 2010));
+        listOfBooks.add(new Book(2,"Working Effectively With Legacy Code", "Michael C. Feathers", 2005));
+        listOfBooks.add(new Book(3,"xUnit Test Patterns: Refactoring Test Code", "Gerard Meszaros", 2007));
 
+        int bookId = 2;
+        Book expectedBook = new Book(2,"Working Effectively With Legacy Code", "Michael C. Feathers", 2005);
+        Book returnedBook = bibliotecaFunctions.getBook(bookId, listOfBooks);
+
+
+        assertEquals(expectedBook.toString(), returnedBook.toString());
+    }
+
+    @Test
+    public void unsuccessfulGetBookById() {
+        listOfBooks.add(new Book(1,"Growing Object-Oriented Software", "Steve Freeman", 2010));
+        listOfBooks.add(new Book(2,"Working Effectively With Legacy Code", "Michael C. Feathers", 2005));
+        listOfBooks.add(new Book(3,"xUnit Test Patterns: Refactoring Test Code", "Gerard Meszaros", 2007));
+
+        int bookId = 4;
+        Book expectedBook = null;
+        Book returnedBook = bibliotecaFunctions.getBook(bookId, listOfBooks);
+
+
+        assertEquals(expectedBook, returnedBook);
+    }
 }

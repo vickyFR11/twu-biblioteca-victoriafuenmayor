@@ -36,5 +36,7 @@ public class Book {
         return availability;
     }
 
-
+    public int getBookId(){
+        return id;
+    }
 }

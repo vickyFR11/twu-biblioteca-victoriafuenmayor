@@ -15,9 +15,24 @@ public class BibliotecaFunctions {
 
     public void addOptionsToTheList(ArrayList<Option> listOfOptions) {
         listOfOptions.add(new Option(1, "List of Books"));
-        listOfOptions.add(new Option(2, "Check-Out a Book"));
-        listOfOptions.add(new Option(3, "Return a Book"));
-        listOfOptions.add(new Option(4, "Quit"));
+        listOfOptions.add(new Option(2, "List of Movies"));
+        listOfOptions.add(new Option(3, "Check-Out a Book"));
+        listOfOptions.add(new Option(4, "Check-Out a Movie"));
+        listOfOptions.add(new Option(5, "Return a Book"));
+        listOfOptions.add(new Option(6, "Quit"));
+    }
+
+    public void addMoviesToTheList(ArrayList<Movie> listOfMovies) {
+        listOfMovies.add(new Movie(1, 2016, "Nocturnal Animals", "Tom Ford", "5 stars"));
+        listOfMovies.add(new Movie(2, 2015, "Trolls", "Mike Mitchell"));
+        listOfMovies.add(new Movie(3, 2016, "Moana", "Ron Clements", "8 stars"));
+        listOfMovies.add(new Movie(4, 2016, "Suicide Squad", "Mavid Ayer"));
+    }
+
+    public void addUsersToTheList(ArrayList<User> usersList) {
+        usersList.add(new User(1,"Felipe", "345-6789", "key1", "felipe@tw.com","+561287900"));
+        usersList.add(new User(2,"Karina", "111-2222", "key2", "karina@tw.com", "+561236789"));
+        usersList.add(new User(3,"Victoria", "123-4567", "key123", "victoria@biblioteca.cl", "+569123456"));
     }
 
     public boolean verifyValidOption(String text, int size) {
@@ -35,9 +50,20 @@ public class BibliotecaFunctions {
         }
     }
 
+    public Book getBook(int index, ArrayList<Book> listOfBooks){
+        if (!listOfBooks.isEmpty()){
+            for (Book book : listOfBooks){
+                if (book.getBookId() == index){
+                    return book;
+                }
+            }
+        }
+        return null;
+    }
+
     public ArrayList<Book> checkOutBook(int index, ArrayList<Book> listOfBooks) {
 
-        if ((index >= 0) && (index <= listOfBooks.size())) {
+        if ((index >= 0) && (index < listOfBooks.size())) {
             if (listOfBooks.get(index).getAvailability()) {
                 listOfBooks.get(index).setAvailability(false);
                 return listOfBooks;
@@ -51,11 +77,11 @@ public class BibliotecaFunctions {
 
     public boolean returnBook(int index, ArrayList<Book> listOfBooks) {
         if (booksToReturn(listOfBooks)) {
-            if ((index >= 0) && (index <= listOfBooks.size())) {
-                listOfBooks.get(index).setAvailability(true);
+            Book book = getBook(index, listOfBooks);
+            if (book != null){
+                book.setAvailability(true);
                 return true;
-
-            } else {
+            }else{
                 return false;
             }
         } else {
@@ -108,18 +134,28 @@ public class BibliotecaFunctions {
         }
     }
 
-    public boolean userLogin(String userLibraryNumber, String userPassword, ArrayList<User> usersList){
+    public User userLogin(String userLibraryNumber, String userPassword, ArrayList<User> usersList, ArrayList<Option> listOfOption){
         if (checkLibraryNumberFormat(userLibraryNumber)){
             for(User user : usersList){
-                if ((user.getLibraryNumber() == userLibraryNumber) && (user.getPassword() == userPassword)){
-                    return true;
+                if ((user.getLibraryNumber().equals(userLibraryNumber)) && (user.getPassword().equals(userPassword))){
+                    addShowUserInformationOption(listOfOption);
+                    return user;
                 }
             }
         }
 
-        return false;
+        return null;
     }
 
+    public void addShowUserInformationOption(ArrayList<Option> listOfOptions){
+        Option lastOption = new Option("Quit");
+
+        listOfOptions.get(listOfOptions.size() - 1).setText("Show User Information");
+        lastOption.setNumber(listOfOptions.size()+1);
+        listOfOptions.add(lastOption);
+
+
+    }
 
     private boolean checkLibraryNumberFormat(String userLibraryNumber){
         String[] splitResult = userLibraryNumber.split("-");
@@ -130,6 +166,18 @@ public class BibliotecaFunctions {
             }
         }
 
+        return false;
+    }
+
+    public boolean checkOutMovie(int movieId, ArrayList<Movie> moviesList){
+        if (!moviesList.isEmpty()){
+            for (Movie movie : moviesList){
+                if ((movie.id == movieId) && (!movie.isCheckout)) {
+                    movie.isCheckout = true;
+                    return movie.isCheckout;
+                }
+            }
+        }
         return false;
     }
 
@@ -157,6 +205,22 @@ public class BibliotecaFunctions {
 
             return nameOfBooksList;
         }
-
     }
+
+    public String printMovies(ArrayList<Movie> listOfMovies) {
+
+        String nameOfMoviesList = "";
+
+        if (listOfMovies.isEmpty()) {
+            return null;
+        } else {
+            for (Movie movie : listOfMovies) {
+                if (!movie.isCheckout)
+                    nameOfMoviesList += movie.toString();
+            }
+
+            return nameOfMoviesList;
+        }
+    }
+
 }

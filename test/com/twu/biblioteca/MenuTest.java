@@ -19,9 +19,11 @@ public class MenuTest {
         functions = new BibliotecaFunctions();
 
         listOfOptions.add(new Option(1, "List of Books"));
-        listOfOptions.add(new Option(2, "Check-Out a Book"));
-        listOfOptions.add(new Option(3, "Return a Book"));
-        listOfOptions.add(new Option(4, "Quit"));
+        listOfOptions.add(new Option(2, "List of Movies"));
+        listOfOptions.add(new Option(3, "Check-Out a Book"));
+        listOfOptions.add(new Option(4, "Check-Out a Movie"));
+        listOfOptions.add(new Option(5, "Return a Book"));
+        listOfOptions.add(new Option(6, "Quit"));
     }
 
     @Test
@@ -48,4 +50,21 @@ public class MenuTest {
         assertEquals(expectedValue, resultValue);
     }
 
+    @Test
+    public void addNewOptionToCurrentList() {
+        String returnedValue = "";
+        String expectedValue =  "1) List of Books\n" +
+                                "2) List of Movies\n" +
+                                "3) Check-Out a Book\n" +
+                                "4) Check-Out a Movie\n" +
+                                "5) Return a Book\n" +
+                                "6) Show User Information\n" +
+                                "7) Quit\n";
+
+
+        functions.addShowUserInformationOption(listOfOptions);
+        returnedValue = functions.printListOfOptions(listOfOptions);
+
+        assertEquals(expectedValue, returnedValue);
+    }
 }

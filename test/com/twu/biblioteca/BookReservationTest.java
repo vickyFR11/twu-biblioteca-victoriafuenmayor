@@ -56,7 +56,7 @@ public class BookReservationTest {
 
     @Test
     public void returnBookSuccessfully() {
-        boolean resultValue = functions.returnBook(0, listOfBooks);
+        boolean resultValue = functions.returnBook(1, listOfBooks);
         boolean expectedValue = true;
 
         assertEquals(expectedValue, resultValue);
