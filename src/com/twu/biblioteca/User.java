@@ -1,7 +1,5 @@
 package com.twu.biblioteca;
 
-import java.util.ArrayList;
-
 public class User {
     private int id;
     private String name;
@@ -9,18 +7,6 @@ public class User {
     private String password;
     private String email;
     private String phoneNumber;
-
-    public User(String name) {
-
-        this.name = name;
-    }
-
-    public User(String name, String libraryNumber, String password) {
-
-        this.name = name;
-        this.libraryNumber = libraryNumber;
-        this.password = password;
-    }
 
     public User(int id, String name, String libraryNumber, String password, String email, String phoneNumber) {
         this.id = id;

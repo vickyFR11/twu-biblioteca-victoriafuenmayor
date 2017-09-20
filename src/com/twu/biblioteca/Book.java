@@ -7,14 +7,6 @@ public class Book {
     private int publishYear;
     private boolean availability;
 
-    public Book(int id, String title, String author, int year) {
-        this.id = id;
-        this.title = title;
-        this.author = author;
-        this.publishYear = year;
-        this.availability = true;
-    }
-
     public Book(int id, String title, String author, int year, boolean availability) {
         this.id = id;
         this.title = title;

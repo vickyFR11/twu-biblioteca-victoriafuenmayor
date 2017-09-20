@@ -9,14 +9,18 @@ import static org.junit.Assert.assertEquals;
 
 public class MenuTest {
 
-    private BibliotecaFunctions functions;
+    private UserFunctions userFunctions;
+    private MenuFunctions menuFunctions;
+    private Print printFunctions;
     private ArrayList<Option> listOfOptions;
 
     @Before
     public void setUp() throws Exception {
 
         listOfOptions = new ArrayList<Option>();
-        functions = new BibliotecaFunctions();
+        menuFunctions = new MenuFunctions();
+        userFunctions = new UserFunctions();
+        printFunctions = new Print();
 
         listOfOptions.add(new Option(1, "List of Books"));
         listOfOptions.add(new Option(2, "List of Movies"));
@@ -28,7 +32,7 @@ public class MenuTest {
 
     @Test
     public void successfulOptionSelectionAtMainMenu() {
-        boolean resultValue = functions.verifyValidOption("2", listOfOptions.size());
+        boolean resultValue = menuFunctions.verifyValidOption("2", listOfOptions.size());
         boolean expectedValue = true;
 
         assertEquals(expectedValue, resultValue);
@@ -36,7 +40,7 @@ public class MenuTest {
 
     @Test
     public void outOfRangeOptionSelectionAtMainMenu() {
-        boolean resultValue = functions.verifyValidOption("8", listOfOptions.size());
+        boolean resultValue = menuFunctions.verifyValidOption("8", listOfOptions.size());
         boolean expectedValue = false;
 
         assertEquals(expectedValue, resultValue);
@@ -44,7 +48,7 @@ public class MenuTest {
 
     @Test
     public void insertTextAsOptionAtMainMenu() {
-        boolean resultValue = functions.verifyValidOption("hola", listOfOptions.size());
+        boolean resultValue = menuFunctions.verifyValidOption("hola", listOfOptions.size());
         boolean expectedValue = false;
 
         assertEquals(expectedValue, resultValue);
@@ -62,8 +66,8 @@ public class MenuTest {
                                 "7) Quit\n";
 
 
-        functions.addShowUserInformationOption(listOfOptions);
-        returnedValue = functions.printListOfOptions(listOfOptions);
+        userFunctions.addShowUserInformationOption(listOfOptions);
+        returnedValue = printFunctions.printListOfOptions(listOfOptions);
 
         assertEquals(expectedValue, returnedValue);
     }
